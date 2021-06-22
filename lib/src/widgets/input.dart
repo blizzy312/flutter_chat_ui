@@ -148,8 +148,7 @@ class _InputState extends State<Input> {
                               .copyWith(
                                 color: InheritedChatTheme.of(context)
                                     .theme
-                                    .inputTextColor
-                                    .withOpacity(0.5),
+                                    .inputTextColor,
                               ),
                           hintText:
                               InheritedL10n.of(context).l10n.inputPlaceholder,
