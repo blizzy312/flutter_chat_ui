@@ -141,6 +141,8 @@ class _InputState extends State<Input> {
                     Expanded(
                       child: TextField(
                         controller: _textController,
+                        cursorColor:
+                            InheritedChatTheme.of(context).theme.cursorColor,
                         decoration: InputDecoration.collapsed(
                           hintStyle: InheritedChatTheme.of(context)
                               .theme

@@ -57,6 +57,7 @@ abstract class ChatTheme {
     required this.emptyChatPlaceholderTextStyle,
     required this.errorColor,
     required this.errorIcon,
+    required this.cursorColor,
     required this.inputBackgroundColor,
     required this.inputBorderRadius,
     required this.inputTextStyle,
@@ -101,6 +102,9 @@ abstract class ChatTheme {
 
   /// Color to indicate something bad happened (usually - shades of red)
   final Color errorColor;
+
+  /// Color to indicate cursor of input field
+  final Color? cursorColor;
 
   /// Icon for message's `error` status. For the best look use size of 16.
   final Widget? errorIcon;
@@ -189,6 +193,7 @@ class DefaultChatTheme extends ChatTheme {
   /// which extends [ChatTheme]
   const DefaultChatTheme({
     Widget? attachmentButtonIcon,
+    Color? cursorColor,
     Color backgroundColor = NEUTRAL_7,
     TextStyle dateDividerTextStyle = const TextStyle(
       color: NEUTRAL_2,
@@ -329,6 +334,7 @@ class DefaultChatTheme extends ChatTheme {
           userAvatarNameColors: userAvatarNameColors,
           userAvatarTextStyle: userAvatarTextStyle,
           userNameTextStyle: userNameTextStyle,
+          cursorColor: cursorColor,
         );
 }
 
@@ -340,6 +346,7 @@ class DarkChatTheme extends ChatTheme {
   /// which extends [ChatTheme]
   const DarkChatTheme({
     Widget? attachmentButtonIcon,
+    Color? cursorColor,
     Color backgroundColor = DARK,
     TextStyle dateDividerTextStyle = const TextStyle(
       color: NEUTRAL_7,
@@ -480,5 +487,6 @@ class DarkChatTheme extends ChatTheme {
           userAvatarNameColors: userAvatarNameColors,
           userAvatarTextStyle: userAvatarTextStyle,
           userNameTextStyle: userNameTextStyle,
+          cursorColor: cursorColor,
         );
 }
