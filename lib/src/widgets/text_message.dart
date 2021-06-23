@@ -94,7 +94,7 @@ class TextMessage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(
             right: 4,
-            bottom: 6,
+            bottom: 12,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
