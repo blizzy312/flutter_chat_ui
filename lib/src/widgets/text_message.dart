@@ -89,33 +89,53 @@ class TextMessage extends StatelessWidget {
         InheritedChatTheme.of(context).theme.userAvatarNameColors);
     final name = getUserName(message.author);
     final date = DateTime.fromMillisecondsSinceEpoch(message.createdAt!);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Stack(
       children: [
-        if (showName)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 6.0),
-            child: Text(
-              name,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: InheritedChatTheme.of(context)
-                  .theme
-                  .userNameTextStyle
-                  .copyWith(color: color),
-            ),
+        Padding(
+          padding: const EdgeInsets.only(
+            right: 4,
+            bottom: 6,
           ),
-        SelectableText(
-          message.text,
-          style: user.id == message.author.id
-              ? InheritedChatTheme.of(context).theme.sentMessageBodyTextStyle
-              : InheritedChatTheme.of(context)
-                  .theme
-                  .receivedMessageBodyTextStyle,
-          textWidthBasis: TextWidthBasis.longestLine,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (showName)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 6.0),
+                  child: Text(
+                    name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: InheritedChatTheme.of(context)
+                        .theme
+                        .userNameTextStyle
+                        .copyWith(color: color),
+                  ),
+                ),
+              SelectableText(
+                message.text,
+                style: user.id == message.author.id
+                    ? InheritedChatTheme.of(context)
+                        .theme
+                        .sentMessageBodyTextStyle
+                    : InheritedChatTheme.of(context)
+                        .theme
+                        .receivedMessageBodyTextStyle,
+                textWidthBasis: TextWidthBasis.longestLine,
+              ),
+              // Align(
+              //   alignment: Alignment.bottomRight,
+              //   child: Text(
+              //     DateFormat('hh:mm').format(date),
+              //     style: InheritedChatTheme.of(context).theme.dateDividerTextStyle,
+              //   ),
+              // ),
+            ],
+          ),
         ),
-        Align(
-          alignment: Alignment.bottomRight,
+        Positioned(
+          right: 0,
+          bottom: 0,
           child: Text(
             DateFormat('hh:mm').format(date),
             style: InheritedChatTheme.of(context).theme.dateDividerTextStyle,
