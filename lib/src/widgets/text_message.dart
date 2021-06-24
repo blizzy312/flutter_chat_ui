@@ -93,7 +93,7 @@ class TextMessage extends StatelessWidget {
       children: [
         ConstrainedBox(
           constraints: BoxConstraints(
-            maxWidth: 20,
+            maxWidth: 40,
           ),
           child: Padding(
             padding: const EdgeInsets.only(
