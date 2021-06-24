@@ -91,32 +91,32 @@ class TextMessage extends StatelessWidget {
     final date = DateTime.fromMillisecondsSinceEpoch(message.createdAt!);
     return Stack(
       children: [
-        ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: 40,
+        Padding(
+          padding: const EdgeInsets.only(
+            right: 4,
+            bottom: 16,
           ),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              right: 4,
-              bottom: 16,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (showName)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 6.0),
-                    child: Text(
-                      name,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: InheritedChatTheme.of(context)
-                          .theme
-                          .userNameTextStyle
-                          .copyWith(color: color),
-                    ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (showName)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 6.0),
+                  child: Text(
+                    name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: InheritedChatTheme.of(context)
+                        .theme
+                        .userNameTextStyle
+                        .copyWith(color: color),
                   ),
-                SelectableText(
+                ),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: 40,
+                ),
+                child: SelectableText(
                   message.text,
                   style: user.id == message.author.id
                       ? InheritedChatTheme.of(context)
@@ -127,15 +127,15 @@ class TextMessage extends StatelessWidget {
                           .receivedMessageBodyTextStyle,
                   textWidthBasis: TextWidthBasis.longestLine,
                 ),
-                // Align(
-                //   alignment: Alignment.bottomRight,
-                //   child: Text(
-                //     DateFormat('hh:mm').format(date),
-                //     style: InheritedChatTheme.of(context).theme.dateDividerTextStyle,
-                //   ),
-                // ),
-              ],
-            ),
+              ),
+              // Align(
+              //   alignment: Alignment.bottomRight,
+              //   child: Text(
+              //     DateFormat('hh:mm').format(date),
+              //     style: InheritedChatTheme.of(context).theme.dateDividerTextStyle,
+              //   ),
+              // ),
+            ],
           ),
         ),
         Positioned(
