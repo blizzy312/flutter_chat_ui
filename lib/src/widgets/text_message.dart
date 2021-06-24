@@ -91,46 +91,51 @@ class TextMessage extends StatelessWidget {
     final date = DateTime.fromMillisecondsSinceEpoch(message.createdAt!);
     return Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            right: 4,
-            bottom: 16,
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 20,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (showName)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 6.0),
-                  child: Text(
-                    name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: InheritedChatTheme.of(context)
-                        .theme
-                        .userNameTextStyle
-                        .copyWith(color: color),
+          child: Padding(
+            padding: const EdgeInsets.only(
+              right: 4,
+              bottom: 16,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (showName)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6.0),
+                    child: Text(
+                      name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: InheritedChatTheme.of(context)
+                          .theme
+                          .userNameTextStyle
+                          .copyWith(color: color),
+                    ),
                   ),
+                SelectableText(
+                  message.text,
+                  style: user.id == message.author.id
+                      ? InheritedChatTheme.of(context)
+                          .theme
+                          .sentMessageBodyTextStyle
+                      : InheritedChatTheme.of(context)
+                          .theme
+                          .receivedMessageBodyTextStyle,
+                  textWidthBasis: TextWidthBasis.longestLine,
                 ),
-              SelectableText(
-                message.text,
-                style: user.id == message.author.id
-                    ? InheritedChatTheme.of(context)
-                        .theme
-                        .sentMessageBodyTextStyle
-                    : InheritedChatTheme.of(context)
-                        .theme
-                        .receivedMessageBodyTextStyle,
-                textWidthBasis: TextWidthBasis.longestLine,
-              ),
-              // Align(
-              //   alignment: Alignment.bottomRight,
-              //   child: Text(
-              //     DateFormat('hh:mm').format(date),
-              //     style: InheritedChatTheme.of(context).theme.dateDividerTextStyle,
-              //   ),
-              // ),
-            ],
+                // Align(
+                //   alignment: Alignment.bottomRight,
+                //   child: Text(
+                //     DateFormat('hh:mm').format(date),
+                //     style: InheritedChatTheme.of(context).theme.dateDividerTextStyle,
+                //   ),
+                // ),
+              ],
+            ),
           ),
         ),
         Positioned(
