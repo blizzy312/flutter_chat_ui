@@ -114,7 +114,7 @@ class TextMessage extends StatelessWidget {
                 ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  minWidth: 20,
+                  minWidth: 26,
                 ),
                 child: SelectableText(
                   message.text,
